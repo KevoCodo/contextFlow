@@ -58,9 +58,12 @@ services:
       - "3000:3000"
     volumes:
       - ./apps/web:/repo/apps/web
+      # Prevent host OS build artifacts (e.g. Windows `.next/`) from being mounted into the container.
+      - web_next_data:/repo/apps/web/.next
     depends_on:
       api:
         condition: service_healthy
 
 volumes:
   postgres_data:
+  web_next_data:
