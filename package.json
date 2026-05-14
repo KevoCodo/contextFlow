@@ -1,0 +1,11 @@
+{
+  "name": "contextflow",
+  "private": true,
+  "workspaces": [
+    "apps/*"
+  ],
+  "scripts": {
+    "dev:web": "npm run dev -w @contextflow/web",
+    "dev:api": "npm run dev -w @contextflow/api"
+  }
+}
