@@ -17,15 +17,17 @@ This is a portfolio/reference project. It is not a production SaaS platform.
 - Embedding and retrieval workflows (indexing, top-K retrieval)
 - Grounded answer generation (answers constrained to retrieved context + sources)
 - RAG system design and tradeoffs (scope, guardrails, public safety)
-- Clean public-safe documentation and demo-friendly UX
+- Clean public-safe documentation and screenshot-ready demo UX
 
 ## Core Features
 - Manual sources + documents (no uploads/crawling)
 - Deterministic chunking + re-indexing (replaces old chunks)
 - OpenAI embeddings (`text-embedding-3-small`) stored in pgvector
-- Semantic retrieval (cosine similarity, top-K)
+- Semantic retrieval (cosine similarity, top-K, optional source filtering)
 - Grounded answer generation using retrieved chunks (answer + sources)
+- Retrieval-only mode for inspecting chunks and scores without answer generation
 - Ask sessions saved for demo visibility (retrieval-only or answered)
+- Polished dashboard, source, document, ask, and session views for portfolio walkthroughs
 
 ## Tech Stack
 - Frontend: Next.js, React, TypeScript, Tailwind CSS
@@ -51,15 +53,16 @@ Next.js UI
 3. Index the document into chunks
 4. Generate embeddings
 5. Ask a question
-6. Retrieve relevant chunks
-7. Generate a grounded answer
-8. Review retrieved sources
+6. Choose all sources or one source, then set top-K
+7. Retrieve relevant chunks
+8. Inspect retrieval-only results or generate a grounded answer
+9. Review retrieved sources
 
 ## RAG Flow Overview (In This Repo)
 - Ingest: manual source + document creation
 - Index: chunk -> embed -> store (pgvector)
-- Retrieve: question -> embed -> top-K chunks
-- Answer: generate response constrained to retrieved context + sources
+- Retrieve: question -> embed -> top-K chunks, optionally filtered by source
+- Answer: either return retrieved chunks only or generate a response constrained to retrieved context + sources
 
 ## Screenshots
 Add images to `docs/screenshots/` and reference them here.
@@ -90,6 +93,7 @@ docker compose up --build
 
 Optional demo content:
 - Set `SEED_DEMO_DATA=true` in `apps/api/.env.example` (or environment) to add safe demo sources/documents.
+- Demo seed names and content are generic/public-safe and intended for screenshots or walkthroughs.
 
 ## Environment Variables
 Backend (`apps/api/.env.example`):
@@ -118,7 +122,7 @@ Frontend (`apps/web/.env.example`):
 - Ask sessions: `GET /ask-sessions`, `GET /ask-sessions/{id}`
 
 ## Project Status
-- Launch-ready showcase; ongoing polish in Phase 6 (UI, docs, screenshots).
+- Launch-ready showcase; Phase 7 UI/demo polish completed.
 
 ## MVP Boundaries
 - Manual text input only in the MVP
