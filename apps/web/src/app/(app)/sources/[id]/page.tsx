@@ -31,6 +31,7 @@ export default async function SourceDetailPage({
 
   const source = await fetchSource(sourceId);
   const documents = await fetchDocuments(sourceId);
+  const indexedDocuments = documents.filter((document) => document.status === "indexed").length;
 
   return (
     <div className="space-y-6">
@@ -59,6 +60,24 @@ export default async function SourceDetailPage({
         </div>
       </header>
 
+      <section className="grid gap-3 sm:grid-cols-3">
+        <div className="rounded-xl border bg-[var(--card-2)] p-4">
+          <div className="text-xs text-[var(--muted)]">Documents</div>
+          <div className="mt-2 text-2xl font-semibold">{documents.length}</div>
+          <div className="mt-1 text-xs text-[var(--muted)]">Attached to this source</div>
+        </div>
+        <div className="rounded-xl border bg-[var(--card-2)] p-4">
+          <div className="text-xs text-[var(--muted)]">Indexed</div>
+          <div className="mt-2 text-2xl font-semibold">{indexedDocuments}</div>
+          <div className="mt-1 text-xs text-[var(--muted)]">Ready for retrieval</div>
+        </div>
+        <div className="rounded-xl border bg-[var(--card-2)] p-4">
+          <div className="text-xs text-[var(--muted)]">Updated</div>
+          <div className="mt-2 text-sm font-medium">{formatDateTime(source.updated_at)}</div>
+          <div className="mt-1 text-xs text-[var(--muted)]">Latest source metadata change</div>
+        </div>
+      </section>
+
       <section className="flex flex-col gap-3 sm:flex-row">
         <Link
           href={`/documents/new?source_id=${source.id}`}
@@ -77,8 +96,11 @@ export default async function SourceDetailPage({
       <section className="space-y-3">
         <div className="text-sm font-medium">Documents</div>
         {documents.length === 0 ? (
-          <div className="rounded-xl border bg-[var(--card-2)] p-4 text-sm text-[var(--muted)]">
-            No documents for this source yet.
+          <div className="rounded-xl border bg-[var(--card-2)] p-6">
+            <div className="text-sm font-medium">No documents for this source yet</div>
+            <div className="mt-1 text-sm text-[var(--muted)]">
+              Add a document to turn this source into retrievable context.
+            </div>
           </div>
         ) : (
           <div className="grid gap-3 md:grid-cols-2">
@@ -100,6 +122,9 @@ export default async function SourceDetailPage({
                 </div>
                 <div className="mt-3 text-xs text-[var(--muted)]">
                   Created: {formatDateTime(d.created_at)}
+                </div>
+                <div className="mt-1 text-xs text-[var(--muted)]">
+                  Updated: {formatDateTime(d.updated_at)}
                 </div>
               </Link>
             ))}

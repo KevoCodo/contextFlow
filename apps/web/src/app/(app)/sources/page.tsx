@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { CreateSourceForm } from "@/components/sources/create-source-form";
 import { Badge } from "@/components/ui/badge";
-import type { KnowledgeSource } from "@/lib/api/types";
+import type { KnowledgeDocument, KnowledgeSource } from "@/lib/api/types";
 import { serverGet } from "@/lib/api/server";
 import { formatDateTime } from "@/lib/format";
 
@@ -10,16 +10,29 @@ async function fetchSources(): Promise<KnowledgeSource[]> {
   return res.items;
 }
 
+async function fetchDocuments(): Promise<KnowledgeDocument[]> {
+  const res = await serverGet<{ items: KnowledgeDocument[] }>("/api/documents");
+  return res.items;
+}
+
 export default async function SourcesPage() {
-  const items = await fetchSources();
+  const [items, documents] = await Promise.all([fetchSources(), fetchDocuments()]);
+  const documentCounts = documents.reduce((counts, document) => {
+    counts.set(document.source_id, (counts.get(document.source_id) ?? 0) + 1);
+    return counts;
+  }, new Map<number, number>());
 
   return (
     <div className="space-y-6">
-      <header className="space-y-2">
-        <h1 className="text-xl font-semibold tracking-tight">Sources</h1>
-        <p className="text-sm text-[var(--muted)]">
-          Manual sources group documents for this public RAG demo. No automated ingestion in the MVP.
-        </p>
+      <header className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+        <div className="space-y-2">
+          <h1 className="text-xl font-semibold tracking-tight">Sources</h1>
+          <p className="max-w-2xl text-sm text-[var(--muted)]">
+            Sources group related manual documents so retrieval can be explained by knowledge area.
+            No automated ingestion is included in this public MVP.
+          </p>
+        </div>
+        <Badge>{items.length} sources</Badge>
       </header>
 
       <section className="rounded-xl border bg-[var(--card-2)] p-4">
@@ -39,8 +52,11 @@ export default async function SourcesPage() {
         </div>
 
         {items.length === 0 ? (
-          <div className="rounded-xl border bg-[var(--card-2)] p-4 text-sm text-[var(--muted)]">
-            No sources yet. Create one above to get started.
+          <div className="rounded-xl border bg-[var(--card-2)] p-6">
+            <div className="text-sm font-medium">No sources yet</div>
+            <div className="mt-1 text-sm text-[var(--muted)]">
+              Create a source to group related documents for retrieval.
+            </div>
           </div>
         ) : (
           <div className="grid gap-3 md:grid-cols-2">
@@ -67,8 +83,25 @@ export default async function SourcesPage() {
                 <div className="mt-2 line-clamp-2 text-sm text-[var(--muted)]">
                   {s.description ?? "No description"}
                 </div>
-                <div className="mt-3 text-xs text-[var(--muted)]">
-                  Created: {formatDateTime(s.created_at)}
+                <div className="mt-4 grid gap-2 text-xs text-[var(--muted)] sm:grid-cols-3">
+                  <div>
+                    <span className="block text-[10px] uppercase tracking-wide text-[var(--muted)]">
+                      Documents
+                    </span>
+                    <span className="text-[var(--foreground)]">{documentCounts.get(s.id) ?? 0}</span>
+                  </div>
+                  <div>
+                    <span className="block text-[10px] uppercase tracking-wide text-[var(--muted)]">
+                      Created
+                    </span>
+                    {formatDateTime(s.created_at)}
+                  </div>
+                  <div>
+                    <span className="block text-[10px] uppercase tracking-wide text-[var(--muted)]">
+                      Updated
+                    </span>
+                    {formatDateTime(s.updated_at)}
+                  </div>
                 </div>
               </Link>
             ))}
