@@ -14,6 +14,7 @@ class AskSession(Base):
     question: Mapped[str] = mapped_column(Text, nullable=False)
     answer: Mapped[str | None] = mapped_column(Text, nullable=True)
     retrieved_chunks: Mapped[list[dict] | None] = mapped_column(JSONB, nullable=True)
+    retrieval_settings: Mapped[dict | None] = mapped_column(JSONB, nullable=True)
     created_at: Mapped[datetime] = mapped_column(
         DateTime(timezone=True), nullable=False, server_default=func.now()
     )
