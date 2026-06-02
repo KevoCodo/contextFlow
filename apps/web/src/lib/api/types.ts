@@ -36,5 +36,6 @@ export type AskSession = {
   question: string;
   answer: string | null;
   retrieved_chunks: Record<string, unknown>[] | null;
+  retrieval_settings: Record<string, unknown> | null;
   created_at: string;
 };
