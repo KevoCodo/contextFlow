@@ -26,7 +26,7 @@ This is a portfolio/reference project. It is not a production SaaS platform.
 - Semantic retrieval (cosine similarity, top-K, optional source filtering)
 - Grounded answer generation using retrieved chunks (answer + sources)
 - Retrieval-only mode for inspecting chunks and scores without answer generation
-- Ask sessions saved for demo visibility (retrieval-only or answered)
+- Ask sessions saved for demo visibility (retrieval-only or grounded-answer runs)
 - Polished dashboard, source, document, ask, and session views for portfolio walkthroughs
 
 ## Tech Stack
@@ -69,7 +69,7 @@ Add images to `docs/screenshots/` and reference them here.
 - Dashboard
 - Sources
 - Document detail (chunks + embeddings)
-- Ask Assistant (answer + retrieved chunks)
+- Ask Assistant (retrieval controls, answer + retrieved chunks)
 - Architecture
 
 ## Local Development (Docker)
@@ -117,12 +117,12 @@ Frontend (`apps/web/.env.example`):
 - Documents: `GET/POST/PATCH/DELETE /documents`
   - Index: `POST /documents/{id}/index`
   - Chunks: `GET /documents/{id}/chunks`
-- Retrieval (semantic): `POST /retrieve`
-- Ask (grounded answer): `POST /ask`
+- Retrieval (semantic): `POST /retrieve` with optional source filter and top-K
+- Ask: `POST /ask` for retrieval-only or grounded-answer mode
 - Ask sessions: `GET /ask-sessions`, `GET /ask-sessions/{id}`
 
 ## Project Status
-- Launch-ready showcase; Phase 7 UI/demo polish completed.
+- Launch-ready showcase; UI/demo polish and retrieval controls completed.
 
 ## MVP Boundaries
 - Manual text input only in the MVP
@@ -136,7 +136,7 @@ Frontend (`apps/web/.env.example`):
 
 ## Future Improvements
 - Add migrations (Alembic) for schema evolution
-- Add richer metadata + filtering (tags, source filters)
+- Add richer metadata + filtering (tags, dates, document status)
 - Add evaluation tooling (retrieval quality checks)
 - Add optional local embeddings/LLMs
 

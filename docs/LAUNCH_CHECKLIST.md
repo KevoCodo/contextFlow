@@ -15,7 +15,9 @@
 - [ ] Postgres starts and `pgvector` extension is available
 - [ ] Indexing works (chunks + embeddings stored)
 - [ ] Retrieval works (`POST /retrieve`)
-- [ ] Ask works (`POST /ask`) and shows grounded answer + sources
+- [ ] Source-filtered retrieval works with expected top-K behavior
+- [ ] Ask works (`POST /ask`) in retrieval-only and grounded-answer modes
+- [ ] Ask sessions show saved mode, source filter, top-K, and retrieved chunks
 
 ## OpenAI setup
 - [ ] `OPENAI_API_KEY` setup documented
@@ -37,7 +39,8 @@ Suggested screenshots:
 - [ ] Dashboard
 - [ ] Sources list + create source
 - [ ] Document detail with chunks + embedding status
-- [ ] Ask Assistant (answer + retrieved chunks)
+- [ ] Ask Assistant (source filter, top-K, mode controls, answer + retrieved chunks)
+- [ ] Ask Session detail (settings + retrieved chunks)
 - [ ] Architecture page
 
 ## GitHub metadata (recommended)
@@ -58,7 +61,6 @@ Suggested topics:
 
 ## LinkedIn launch
 - [ ] Draft post in `docs/PORTFOLIO_COPY.md`
-- [ ] Add 1–2 screenshots/GIFs
+- [ ] Add 1-2 screenshots/GIFs
 - [ ] Link the GitHub repo
 - [ ] Keep copy practical and public-safe
-

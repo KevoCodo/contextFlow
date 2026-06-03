@@ -14,10 +14,10 @@ A manually entered text unit (title + content). Documents can be indexed into ch
 A segment of a document produced by chunking. Chunks are the unit of indexing (embeddings later) and retrieval.
 
 ### AskSession
-A lightweight record of a user question and the system's retrieval results/response payload (used for demo visibility).
+A lightweight record of a user question, retrieval settings, retrieved chunks, and optional answer (used for demo visibility).
 
 ## Statuses
-Initial statuses for documents/chunks:
+Initial statuses for sources/documents:
 - `draft`: created/updated but not indexed yet
 - `indexed`: chunked and embedded; retrievable
 - `failed`: indexing failed; error handled visibly
