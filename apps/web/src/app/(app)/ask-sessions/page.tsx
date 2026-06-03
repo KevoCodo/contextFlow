@@ -36,7 +36,14 @@ export default async function AskSessionsPage() {
       ) : (
         <div className="grid gap-3">
           {items.map((s) => (
-            <div key={s.id} className="rounded-xl border bg-[var(--card-2)] p-4">
+            <Link key={s.id} href={`/ask-sessions/${s.id}`} className="rounded-xl border bg-[var(--card-2)] p-4 hover:bg-white/4">
+              {(() => {
+                const settings = s.retrieval_settings ?? {};
+                const mode = settings.mode === "retrieval_only" ? "Retrieval only" : "Grounded answer";
+                const topK = typeof settings.top_k === "number" ? settings.top_k : null;
+                const sourceTitle = typeof settings.source_title === "string" ? settings.source_title : "All Sources";
+                return (
+                  <>
               <div className="flex flex-wrap items-center justify-between gap-3">
                 <div className="text-sm font-medium">Session #{s.id}</div>
                 <div className="text-xs text-[var(--muted)]">{formatDateTime(s.created_at)}</div>
@@ -47,9 +54,11 @@ export default async function AskSessionsPage() {
 
               <div className="mt-4 flex items-center gap-2">
                 <Badge variant={s.answer ? "success" : "muted"}>
-                  {s.answer ? "Answer generated" : "Retrieval only"}
+                  {mode}
                 </Badge>
                 <Badge>{Array.isArray(s.retrieved_chunks) ? `${s.retrieved_chunks.length} chunks` : "0 chunks"}</Badge>
+                {topK ? <Badge>{topK} top-K</Badge> : null}
+                <Badge>{sourceTitle}</Badge>
               </div>
 
               {s.answer ? (
@@ -60,11 +69,13 @@ export default async function AskSessionsPage() {
                   </div>
                 </>
               ) : null}
-            </div>
+                  </>
+                );
+              })()}
+            </Link>
           ))}
         </div>
       )}
     </div>
   );
 }
-

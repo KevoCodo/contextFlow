@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
-import type { KnowledgeDocument } from "@/lib/api/types";
+import type { KnowledgeChunk, KnowledgeDocument, KnowledgeSource } from "@/lib/api/types";
 import { serverGet } from "@/lib/api/server";
 import { formatDateTime } from "@/lib/format";
 
@@ -9,8 +9,23 @@ async function fetchDocuments(): Promise<KnowledgeDocument[]> {
   return res.items;
 }
 
+async function fetchSources(): Promise<KnowledgeSource[]> {
+  const res = await serverGet<{ items: KnowledgeSource[] }>("/api/sources");
+  return res.items;
+}
+
+async function fetchChunks(documentId: number): Promise<KnowledgeChunk[]> {
+  const res = await serverGet<{ items: KnowledgeChunk[] }>(`/api/documents/${documentId}/chunks`);
+  return res.items;
+}
+
 export default async function DocumentsPage() {
-  const items = await fetchDocuments();
+  const [items, sources] = await Promise.all([fetchDocuments(), fetchSources()]);
+  const sourceNames = new Map(sources.map((source) => [source.id, source.title]));
+  const chunkEntries = await Promise.all(
+    items.map(async (document) => [document.id, await fetchChunks(document.id)] as const)
+  );
+  const chunkCounts = new Map(chunkEntries.map(([id, chunks]) => [id, chunks.length]));
 
   return (
     <div className="space-y-6">
@@ -30,8 +45,11 @@ export default async function DocumentsPage() {
       </header>
 
       {items.length === 0 ? (
-        <div className="rounded-xl border bg-[var(--card-2)] p-4 text-sm text-[var(--muted)]">
-          No documents yet. Create one to index into chunks.
+        <div className="rounded-xl border bg-[var(--card-2)] p-6">
+          <div className="text-sm font-medium">No documents yet</div>
+          <div className="mt-1 text-sm text-[var(--muted)]">
+            Create a manual text document, then index it into chunks and embeddings.
+          </div>
         </div>
       ) : (
         <div className="grid gap-3 md:grid-cols-2">
@@ -51,9 +69,22 @@ export default async function DocumentsPage() {
                   {d.status}
                 </Badge>
               </div>
-              <div className="mt-2 text-xs text-[var(--muted)]">Source: {d.source_id}</div>
-              <div className="mt-3 text-xs text-[var(--muted)]">
-                Created: {formatDateTime(d.created_at)}
+              <div className="mt-2 text-sm text-[var(--muted)]">
+                Source: {sourceNames.get(d.source_id) ?? `#${d.source_id}`}
+              </div>
+              <div className="mt-4 grid gap-2 text-xs text-[var(--muted)] sm:grid-cols-3">
+                <div>
+                  <span className="block text-[10px] uppercase tracking-wide">Chunks</span>
+                  <span className="text-[var(--foreground)]">{chunkCounts.get(d.id) ?? 0}</span>
+                </div>
+                <div>
+                  <span className="block text-[10px] uppercase tracking-wide">Created</span>
+                  {formatDateTime(d.created_at)}
+                </div>
+                <div>
+                  <span className="block text-[10px] uppercase tracking-wide">Last indexed</span>
+                  {d.status === "indexed" ? formatDateTime(d.updated_at) : "Not indexed"}
+                </div>
               </div>
             </Link>
           ))}

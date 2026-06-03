@@ -8,6 +8,7 @@ class AskSessionRead(APIModel):
     question: str
     answer: str | None
     retrieved_chunks: list[dict] | None
+    retrieval_settings: dict | None = None
     created_at: datetime
 
 

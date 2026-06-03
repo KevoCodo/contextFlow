@@ -58,3 +58,19 @@ def ensure_embedding_vector_column(dimensions: int = 1536) -> None:
                 """
             )
         )
+
+
+def ensure_ask_session_retrieval_settings_column() -> None:
+    with engine.begin() as conn:
+        exists = conn.execute(
+            text(
+                """
+                SELECT 1
+                FROM information_schema.columns
+                WHERE table_name = 'ask_sessions' AND column_name = 'retrieval_settings'
+                """
+            )
+        ).first()
+
+        if exists is None:
+            conn.execute(text("ALTER TABLE ask_sessions ADD COLUMN retrieval_settings jsonb;"))

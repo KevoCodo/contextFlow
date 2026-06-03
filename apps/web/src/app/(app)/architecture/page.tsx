@@ -3,14 +3,18 @@ export default function ArchitecturePage() {
     <div className="space-y-6">
       <header className="space-y-2">
         <h1 className="text-xl font-semibold tracking-tight">Architecture</h1>
-        <p className="text-sm text-[var(--muted)]">
+        <p className="max-w-3xl text-sm text-[var(--muted)]">
           ContextFlow is intentionally small: a Next.js UI, a FastAPI backend, and PostgreSQL +
-          pgvector for similarity search.
+          pgvector for similarity search. The screens are arranged to make the RAG flow easy to
+          explain in a portfolio walkthrough.
         </p>
       </header>
 
       <section className="rounded-xl border bg-[var(--card-2)] p-4">
-        <div className="text-sm font-medium">System diagram</div>
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <div className="text-sm font-medium">System diagram</div>
+          <div className="text-xs text-[var(--muted)]">Manual ingest - chunk - embed - retrieve - answer</div>
+        </div>
         <pre className="mt-3 overflow-x-auto rounded-lg border bg-black/10 p-3 text-xs text-[var(--muted)]">
 {`Browser / Next.js UI
   -> FastAPI REST API
@@ -61,7 +65,8 @@ export default function ArchitecturePage() {
       </section>
 
       <div className="rounded-xl border bg-[var(--card-2)] p-4 text-sm text-[var(--muted)]">
-        Detailed responsibilities and design notes live in `docs/ARCHITECTURE.md`.
+        Detailed responsibilities and design notes live in docs/ARCHITECTURE.md. The UI intentionally
+        stays focused on demo clarity instead of production SaaS concerns.
       </div>
     </div>
   );

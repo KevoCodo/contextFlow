@@ -15,7 +15,7 @@ Browser / Next.js UI
 
 ## Frontend responsibilities (Next.js)
 - Manual knowledge entry UI (create/update a knowledge document)
-- Ask UI (submit questions, display answer + sources)
+- Ask UI (submit questions, choose source scope, set top-K, choose retrieval-only or answer mode)
 - Basic UX around ingestion/indexing status (draft / indexed / failed)
 - Display retrieved chunks and source attribution clearly
 
@@ -39,17 +39,19 @@ Browser / Next.js UI
 ## Retrieval service responsibilities
 - Accept a query string
 - Create a query embedding (OpenAI embeddings)
+- Apply optional source filtering
 - Retrieve top-K relevant chunks using pgvector similarity search (cosine similarity)
-- Return chunks + document metadata for attribution
+- Return chunks + source/document metadata for attribution
 
 ## Answer generation responsibilities
 - Compose a prompt from: user question + retrieved context + constraints
 - Generate an answer that cites sources (document/chunk IDs)
 - Provide "I don't know" behavior when retrieval is insufficient
+- Skip chat completion entirely for retrieval-only mode
 
 ## Suggested API flow (conceptual)
 1. `POST /sources` (manual grouping)
 2. `POST /documents` (manual text)
 3. `POST /documents/{id}/index` (chunk + embed + store)
-4. `POST /retrieve` (semantic retrieval: question -> top-K chunks)
-5. `POST /ask` (grounded answer generation using retrieved chunks)
+4. `POST /retrieve` (semantic retrieval: question -> source-filtered top-K chunks)
+5. `POST /ask` (retrieval-only or grounded answer generation using retrieved chunks)

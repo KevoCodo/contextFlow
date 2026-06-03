@@ -40,6 +40,21 @@
 - Improve docs and developer experience
 - Ensure the repository is clean, safe, and reviewable
 
+## Phase 7: UI polish and demo readiness
+- Status: completed
+- Improve dashboard metrics for sources, documents, chunks, indexed documents, and ask sessions
+- Improve source/document list and detail pages with clearer metadata and empty states
+- Improve ask and saved session views so grounded answers connect visibly to retrieved chunks
+- Keep scope public-safe and avoid new RAG feature work
+
+## Phase 8: Retrieval controls and source filtering
+- Status: completed
+- Add source filtering for retrieval and ask flows
+- Add top-K controls with safe limits
+- Add retrieval-only and grounded-answer modes
+- Persist retrieval settings on ask sessions for walkthrough/debug visibility
+- Display source, document, chunk index, and similarity score in retrieved chunk cards
+
 ## Future phases (explicitly out of MVP)
 - File upload support (PDF, DOCX, etc.)
 - Website crawling support

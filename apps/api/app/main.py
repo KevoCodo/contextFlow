@@ -5,7 +5,12 @@ from fastapi import FastAPI
 
 from app.api.router import api_router
 from app.core.settings import settings
-from app.db.init_db import create_tables, ensure_embedding_vector_column, ensure_pgvector_extension
+from app.db.init_db import (
+    create_tables,
+    ensure_ask_session_retrieval_settings_column,
+    ensure_embedding_vector_column,
+    ensure_pgvector_extension,
+)
 from app.db.seed import seed_demo_data
 from app.db.session import SessionLocal
 
@@ -21,6 +26,7 @@ async def lifespan(_: FastAPI):
             ensure_pgvector_extension()
             create_tables()
             ensure_embedding_vector_column()
+            ensure_ask_session_retrieval_settings_column()
             if settings.SEED_DEMO_DATA:
                 with SessionLocal() as db:
                     seed_demo_data(db)

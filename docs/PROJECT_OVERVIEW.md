@@ -30,6 +30,8 @@ Build a focused, public portfolio project that demonstrates a practical retrieva
 - Keep the scope understandable in one sitting (reviewer-friendly)
 - Make tradeoffs explicit (why this design, why these constraints)
 - Show end-to-end architecture maturity without overbuilding
+- Provide UI screens that support portfolio walkthroughs: what knowledge exists, what has
+  been indexed, how chunks are retrieved, and how answers cite retrieved context
 
 ## High-level MVP summary
 - Manual text entry only (paste or type knowledge)
