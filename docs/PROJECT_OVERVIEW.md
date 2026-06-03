@@ -17,7 +17,8 @@ Build a focused, public portfolio project that demonstrates a practical retrieva
 - Manual text ingestion (public-safe MVP)
 - Deterministic text chunking and re-indexing
 - OpenAI embeddings stored in PostgreSQL via pgvector
-- Semantic retrieval using vector similarity search
+- Semantic retrieval using vector similarity search with source filtering and top-K controls
+- Retrieval-only inspection for chunk scores and attribution
 - Grounded response patterns (answer + sources) and safe-by-default thinking
 
 ## What this project intentionally does not do
@@ -37,7 +38,8 @@ Build a focused, public portfolio project that demonstrates a practical retrieva
 - Manual text entry only (paste or type knowledge)
 - Store knowledge as sources, documents, and chunks
 - Index documents into embedded chunks for semantic retrieval
-- Return grounded outputs with retrieved sources/chunks
+- Retrieve chunks across all sources or a selected source
+- Return retrieval-only results or grounded outputs with retrieved sources/chunks
 
 ## Why this project is public-safe
 - No private business data or client content is included or required

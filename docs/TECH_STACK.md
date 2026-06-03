@@ -5,7 +5,7 @@
 - React
 - TypeScript
 - Tailwind CSS
-- shadcn/ui (component primitives)
+- Lightweight local UI components
 
 ## Backend
 - Python
@@ -21,7 +21,8 @@
 ## RAG / AI layer (current)
 - Embeddings provider: OpenAI embeddings (`text-embedding-3-small`)
 - Chunking: server-side utilities to split text into retrieval-friendly segments
-- Retrieval: pgvector similarity search (cosine similarity, top-K)
+- Retrieval: pgvector similarity search (cosine similarity, top-K, optional source filtering)
+- Modes: retrieval-only chunk inspection and grounded answer generation
 - Grounding format: answer + sources (retrieved chunk references)
 
 ## Local development
@@ -29,9 +30,7 @@
 - Makefile or npm scripts (optional convenience; add later if useful)
 
 ## Future optional AI integration layer
-- Answer generation service (LLM) that consumes retrieved context (implemented in a minimal, grounded form)
 - Provider-agnostic design to support:
-  - OpenAI chat completions
   - Local embeddings/LLMs (e.g., via Ollama) as a future extension
 
 ## Why Python/FastAPI for this RAG project
