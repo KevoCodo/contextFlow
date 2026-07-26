@@ -18,7 +18,7 @@ RAG lets an AI system retrieve relevant source material before generating an ans
 6. Explain similarity scores, top-K, source titles, document titles, and chunk IDs.
 7. Run the same question in Grounded Answer mode.
 8. Apply the product-support source filter and ask the source-filter question.
-9. Ask the unsupported question and explain insufficient-context behavior.
+9. Ask the unsupported question and explain that it returns `Sources: None` while keeping retrieved candidates visible.
 10. Open the saved ask session and show the preserved settings, answer, and chunks.
 
 ## Three Demo Questions
@@ -42,6 +42,7 @@ Use these public-safe sources:
 - Retrieval-only mode: shows evidence without calling chat completion.
 - Grounded generation: sends retrieved chunks to the chat model as answer context.
 - Limitations: retrieval can miss evidence, source content can be incomplete, and RAG does not guarantee correctness.
+- Unsupported fallback: when retrieved context does not support the answer, the app avoids an unsupported claim and shows `Sources: None`.
 
 ## Tradeoffs
 

@@ -56,7 +56,7 @@ This checklist should be updated from actual verification, not assumptions.
 - [x] Failed indexing does not appear successful. Note: backend marks document `failed`; UI displays error message.
 - [x] Retrieval-only mode clearly differs from grounded-answer mode.
 - [x] Retrieved chunks show source/document/chunk metadata and scores.
-- [x] Grounded-answer fallback improved for zero retrieved chunks. Note: returns insufficient-information response without chat completion.
+- [x] Grounded-answer fallback improved for insufficient context. Note: unsupported answers return `Sources: None`; retrieved candidates remain visible for inspection.
 - [ ] Three-minute walkthrough rehearsed. Manual action required.
 - [ ] Failure scenario prepared. Manual action required.
 
@@ -83,7 +83,7 @@ This checklist should be updated from actual verification, not assumptions.
 - [ ] Three-minute walkthrough rehearsed. Manual action required.
 - [x] Retrieval-only example prepared. Note: remote-work temporary-location question returns retrieved chunks without an answer.
 - [x] Grounded-answer example prepared. Note: same remote-work question generates a grounded answer with source references.
-- [x] Failure scenario prepared. Note: holiday schedule question is unsupported by the prepared source and returns an uncertainty response.
+- [x] Failure scenario prepared. Note: holiday schedule question is unsupported by the prepared source and returns an insufficient-context response with `Sources: None`.
 - [x] Architecture explanation prepared. Note: README, architecture doc, workshop guide, and interview guide updated.
 - [x] Repository links verified for newly added docs. Note: README links point to existing files.
 - [x] No sensitive data present in tracked files. Note: ignored local env files were not committed.

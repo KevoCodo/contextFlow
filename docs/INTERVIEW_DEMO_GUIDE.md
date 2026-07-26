@@ -32,7 +32,8 @@ The important boundary is that RAG improves access to external knowledge, but it
 8. Switch to Grounded Answer and ask the same question.
 9. Compare the generated answer with the retrieved evidence.
 10. Change top-K or source filter to show retrieval tuning.
-11. Open Ask Sessions to show saved debugging context.
+11. Ask an unsupported question and explain that the fallback uses `Sources: None` while retrieved chunks remain visible as candidates.
+12. Open Ask Sessions to show saved debugging context.
 
 ## Technical Talking Points
 

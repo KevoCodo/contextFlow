@@ -135,7 +135,8 @@ After the demo:
 11. Lower and raise top-K.
 12. Apply a source filter.
 13. Ask a question outside the source material.
-14. Show the saved ask session.
+14. Point out that unsupported answers use `Sources: None` while retrieved candidates remain visible for debugging.
+15. Show the saved ask session.
 
 ## Key Tradeoffs
 
@@ -157,6 +158,7 @@ After the demo:
 - **Vector similarity guarantees correctness:** similarity is not the same as truth.
 - **More retrieved chunks always improve the answer:** more chunks can add noise.
 - **Source citations prove the answer is correct:** citations make answers inspectable, not automatically correct.
+- **Retrieved chunks are always answer sources:** retrieved chunks are candidates. Unsupported answers should show `Sources: None` even when candidates are displayed for inspection.
 - **Every AI workflow needs an agent:** many useful AI systems are simpler retrieval and generation workflows.
 
 ## Closing Discussion

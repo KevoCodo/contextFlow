@@ -75,8 +75,8 @@ The README should reference screenshots only after the corresponding image files
 - Suggested filename: `unsupported-question-behavior.png`
 - Screen state to capture: grounded-answer run for a question not answered by the selected source, with retrieved chunks visible below.
 - Demo data required: indexed demo source that does not contain the requested answer.
-- What it proves: the system has visible boundaries and can demonstrate insufficient-context behavior.
-- Recommended caption: Unsupported question showing system limitation and retrieved evidence for review.
+- What it proves: the system has visible boundaries, does not cite irrelevant chunks, and still exposes retrieved candidates for review.
+- Recommended caption: Unsupported question showing `Sources: None` and retrieved candidates for debugging.
 
 ### 9. Ask Session Detail
 

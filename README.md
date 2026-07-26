@@ -25,6 +25,7 @@ ContextFlow exists to make Retrieval-Augmented Generation easier to inspect, exp
 - How retrieved context is passed to an LLM for grounded answer generation
 - Why retrieval quality affects answer quality
 - Why RAG improves grounding but does not guarantee correctness
+- How insufficient-context fallbacks avoid unsupported answers while still showing retrieved candidates for inspection
 
 ## Architecture
 
@@ -222,6 +223,7 @@ Workshop materials:
 - No guarantee of answer correctness
 
 RAG can improve grounding by giving a model relevant context, but retrieval can miss evidence, return weak evidence, or surface text that is similar but not sufficient.
+When retrieved chunks do not support the question, ContextFlow returns an insufficient-context message with `Sources: None`; retrieved chunks may still appear below as candidates to inspect, not as cited evidence.
 
 ## Documentation Links
 

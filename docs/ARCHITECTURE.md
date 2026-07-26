@@ -46,7 +46,7 @@ Browser / Next.js UI
 ## Answer generation responsibilities
 - Compose a prompt from: user question + retrieved context + constraints
 - Generate an answer that cites sources (document/chunk IDs)
-- Provide "I don't know" behavior when retrieval is insufficient
+- Provide an insufficient-context fallback with `Sources: None` when retrieved chunks do not support the answer
 - Skip chat completion entirely for retrieval-only mode
 
 ## Suggested API flow (conceptual)

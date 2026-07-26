@@ -155,7 +155,7 @@ Ask: `What is the company's holiday schedule?`
 Checkpoint:
 
 - Expected screen state: retrieval may return weakly related chunks, and grounded mode should indicate insufficient context if the model follows the prompt.
-- Expected API/data result: retrieved chunks do not contain the answer.
+- Expected API/data result: retrieved chunks do not contain the answer, and the answer ends with `Sources: None`.
 - Common mistake: assuming every answerable-looking response is correct.
 - Recovery action: inspect the retrieved evidence and discuss grounding limits.
 

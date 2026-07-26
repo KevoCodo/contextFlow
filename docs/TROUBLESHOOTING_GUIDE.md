@@ -221,7 +221,7 @@ Safety note: `docker compose config` expands values from local env files. Do not
 - First diagnostic check: read the retrieved chunks.
 - Resolution: improve source content, adjust top-K, or ask a narrower question.
 - Safe workshop fallback: discuss why evidence inspection matters.
-- Instructor explanation: a grounded system should avoid confident unsupported answers.
+- Instructor explanation: a grounded system should avoid confident unsupported answers. Retrieved chunks are candidates for inspection; unsupported answers should use `Sources: None` instead of citing irrelevant chunks.
 
 ### Seed Data Missing
 
