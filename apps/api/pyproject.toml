@@ -1,0 +1,8 @@
+[tool.ruff]
+target-version = "py312"
+
+[tool.ruff.lint]
+extend-ignore = [
+  "B008",   # FastAPI intentionally uses Depends(...) in route defaults.
+  "EXE002", # Windows bind mounts can mark files executable inside Docker.
+]

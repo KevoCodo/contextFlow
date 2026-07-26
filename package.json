@@ -6,6 +6,11 @@
   ],
   "scripts": {
     "dev:web": "npm run dev -w @contextflow/web",
-    "dev:api": "npm run dev -w @contextflow/api"
+    "dev:api": "npm run dev -w @contextflow/api",
+    "lint:web": "npm run lint -w @contextflow/web",
+    "typecheck:web": "npm run typecheck -w @contextflow/web",
+    "build:web": "npm run build -w @contextflow/web",
+    "lint:api": "npm run lint -w @contextflow/api",
+    "test:api": "npm run test -w @contextflow/api"
   }
 }

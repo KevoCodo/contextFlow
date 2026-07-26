@@ -1,7 +1,7 @@
 from sqlalchemy import text
 
-from app.db.engine import engine
 from app.db.base import Base
+from app.db.engine import engine
 
 
 def ensure_pgvector_extension() -> None:
