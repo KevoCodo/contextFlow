@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { EditSourceForm } from "@/components/sources/edit-source-form";
 import { Badge } from "@/components/ui/badge";
 import type { KnowledgeDocument, KnowledgeSource } from "@/lib/api/types";
 import { serverGet } from "@/lib/api/server";
@@ -36,24 +37,27 @@ export default async function SourceDetailPage({
   return (
     <div className="space-y-6">
       <header className="space-y-2">
-        <div className="flex items-start justify-between gap-4">
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
           <div>
             <h1 className="text-xl font-semibold tracking-tight">{source.title}</h1>
             <p className="mt-1 text-sm text-[var(--muted)]">
               {source.description ?? "No description"}
             </p>
           </div>
-          <Badge
-            variant={
-              source.status === "indexed"
-                ? "success"
-                : source.status === "failed"
-                  ? "danger"
-                  : "muted"
-            }
-          >
-            {source.status}
-          </Badge>
+          <div className="flex flex-col items-start gap-3 sm:items-end">
+            <Badge
+              variant={
+                source.status === "indexed"
+                  ? "success"
+                  : source.status === "failed"
+                    ? "danger"
+                    : "muted"
+              }
+            >
+              {source.status}
+            </Badge>
+            <EditSourceForm key={source.updated_at} source={source} />
+          </div>
         </div>
         <div className="text-xs text-[var(--muted)]">
           Created: {formatDateTime(source.created_at)}
