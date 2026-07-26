@@ -70,7 +70,15 @@ The README should reference screenshots only after the corresponding image files
 - What it proves: retrieved context is passed into answer generation and source evidence remains visible.
 - Recommended caption: Grounded answer generated from retrieved chunks with sources available for inspection.
 
-### 8. Ask Session Detail
+### 8. Unsupported-Question Behavior
+
+- Suggested filename: `unsupported-question-behavior.png`
+- Screen state to capture: grounded-answer run for a question not answered by the selected source, with retrieved chunks visible below.
+- Demo data required: indexed demo source that does not contain the requested answer.
+- What it proves: the system has visible boundaries and can demonstrate insufficient-context behavior.
+- Recommended caption: Unsupported question showing system limitation and retrieved evidence for review.
+
+### 9. Ask Session Detail
 
 - Suggested filename: `ask-session-detail.png`
 - Screen state to capture: saved ask session showing mode, top-K, source filter, answer, and chunks.
@@ -78,7 +86,7 @@ The README should reference screenshots only after the corresponding image files
 - What it proves: retrieval settings and evidence are saved for review/debugging.
 - Recommended caption: Saved ask session preserving retrieval settings, answer, and source chunks.
 
-### 9. Architecture Diagram or Architecture Page
+### 10. Architecture Diagram or Architecture Page
 
 - Suggested filename: `architecture-page.png`
 - Screen state to capture: app Architecture page or rendered README Mermaid diagram.
@@ -95,8 +103,9 @@ The README should reference screenshots only after the corresponding image files
 5. Ask screen with controls
 6. Retrieval-only results
 7. Grounded answer with sources
-8. Ask session detail
-9. Architecture page
+8. Unsupported-question behavior
+9. Ask session detail
+10. Architecture page
 
 ## Manual Capture Notes
 

@@ -29,14 +29,14 @@ This checklist should be updated from actual verification, not assumptions.
 - [x] `docker compose up -d` starts services.
 - [x] Postgres starts and healthcheck passes.
 - [x] API health works at `http://localhost:8000/health`.
-- [x] Web app responds at `http://localhost:3000/dashboard`.
+- [x] Web app responds at `http://localhost:3000/dashboard`. Note: verified with `curl.exe`; one PowerShell `Invoke-WebRequest` run timed out against the Next dev server, but curl and in-container fetch passed.
 - [x] Root route redirects to `/dashboard`.
-- [ ] pgvector extension verified manually in database. Note: API startup attempts `CREATE EXTENSION IF NOT EXISTS vector`; no manual SQL check was run.
-- [ ] Indexing works with live OpenAI API key. Note: requires valid key and a manual/indexed document.
-- [ ] Retrieval works with live OpenAI API key. Note: requires indexed chunks.
-- [ ] Source-filtered retrieval works with expected top-K behavior. Note: covered by validation tests and docs; live AI path still requires indexed chunks.
-- [ ] Ask works in both retrieval-only and grounded-answer modes with live OpenAI calls. Note: route behavior tested with mocks; live AI path requires key/quota.
-- [ ] Ask sessions show saved mode, source filter, top-K, and retrieved chunks from a live run. Note: UI and route behavior verified by build/tests, but live run still manual.
+- [x] pgvector extension verified manually in database. Note: `SELECT extname FROM pg_extension WHERE extname = 'vector';` returned `vector`.
+- [x] Indexing works with live OpenAI API key. Note: verified with public-safe final demo documents.
+- [x] Retrieval works with live OpenAI API key. Note: verified through `/ask` retrieval-only mode.
+- [x] Source-filtered retrieval works with expected top-K behavior. Note: verified source-filtered support query returned only the selected source, and top-K 3 versus 5 returned different counts.
+- [x] Ask works in both retrieval-only and grounded-answer modes with live OpenAI calls. Note: verified with final demo data.
+- [x] Ask sessions show saved mode, source filter, top-K, and retrieved chunks from a live run. Note: latest live runs were saved and retrievable.
 
 ## OpenAI Setup
 
@@ -44,7 +44,7 @@ This checklist should be updated from actual verification, not assumptions.
 - [x] `EMBEDDING_MODEL` documented. Default: `text-embedding-3-small`.
 - [x] `CHAT_MODEL` documented. Default: `gpt-4o-mini`.
 - [x] Missing key behavior documented. Note: app starts, but indexing/retrieval/answer generation fail with explicit messages.
-- [ ] Invalid key behavior manually verified. Note: requires intentionally invalid key.
+- [ ] Invalid key behavior manually verified. Note: requires intentionally invalid key and was not exercised during final verification.
 - [ ] No logs leak secrets during normal app requests. Note: tracked code does not log keys; avoid sharing `docker compose config` output.
 
 ## Demo Readiness
@@ -79,11 +79,11 @@ This checklist should be updated from actual verification, not assumptions.
 
 - [x] Docker demo verified. Note: containers start; health and dashboard verified.
 - [ ] Backup screenshots available. Manual capture required.
-- [ ] Demo data prepared. Manual action required before live demo.
+- [x] Demo data prepared. Note: public-safe final demo sources and indexed documents were created locally.
 - [ ] Three-minute walkthrough rehearsed. Manual action required.
-- [ ] Retrieval-only example prepared. Manual action requires indexed demo data.
-- [ ] Grounded-answer example prepared. Manual action requires OpenAI key/quota.
-- [ ] Failure scenario prepared. Manual action required.
+- [x] Retrieval-only example prepared. Note: remote-work temporary-location question returns retrieved chunks without an answer.
+- [x] Grounded-answer example prepared. Note: same remote-work question generates a grounded answer with source references.
+- [x] Failure scenario prepared. Note: holiday schedule question is unsupported by the prepared source and returns an uncertainty response.
 - [x] Architecture explanation prepared. Note: README, architecture doc, workshop guide, and interview guide updated.
 - [x] Repository links verified for newly added docs. Note: README links point to existing files.
 - [x] No sensitive data present in tracked files. Note: ignored local env files were not committed.
