@@ -6,6 +6,7 @@ build/
 .env
 .env.*
 !.env.example
+!**/.env.example
 
 __pycache__/
 *.pyc
@@ -13,4 +14,3 @@ __pycache__/
 .venv/
 
 .DS_Store
-

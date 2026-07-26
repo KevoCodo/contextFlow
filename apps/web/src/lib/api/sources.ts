@@ -15,3 +15,13 @@ export async function createSource(payload: {
 }): Promise<KnowledgeSource> {
   return createApiClient().post<KnowledgeSource>("/api/sources", payload);
 }
+
+export async function updateSource(
+  id: number,
+  payload: {
+    title?: string;
+    description?: string | null;
+  }
+): Promise<KnowledgeSource> {
+  return createApiClient().patch<KnowledgeSource>(`/api/sources/${id}`, payload);
+}

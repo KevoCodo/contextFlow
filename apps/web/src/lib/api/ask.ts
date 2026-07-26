@@ -4,6 +4,8 @@ import type { RetrieveMatch } from "./retrieve";
 export type AskResponse = {
   question: string;
   answer: string | null;
+  answer_status?: "retrieval_only" | "supported" | "insufficient_context" | null;
+  answer_sources?: number[];
   source_id?: number | null;
   top_k: number;
   retrieval_only: boolean;
