@@ -49,7 +49,7 @@ This checklist should be updated from actual verification, not assumptions.
 
 ## Demo Readiness
 
-- [x] Demo content option documented. Note: `SEED_DEMO_DATA=true` creates draft sources/documents.
+- [x] Demo content option documented. Note: `SEED_DEMO_DATA=true` creates draft `Remote Work Policy` and `Product Support Guide` sources/documents.
 - [x] Seed behavior documented accurately. Note: seeded documents must still be indexed.
 - [x] Empty states reviewed in UI code and documented.
 - [x] Loading states reviewed in UI code and documented.
@@ -79,7 +79,7 @@ This checklist should be updated from actual verification, not assumptions.
 
 - [x] Docker demo verified. Note: containers start; health and dashboard verified.
 - [ ] Backup screenshots available. Manual capture required.
-- [x] Demo data prepared. Note: public-safe final demo sources and indexed documents were created locally.
+- [x] Demo data prepared. Note: public-safe `Remote Work Policy` and `Product Support Guide` sources and indexed documents were created locally.
 - [ ] Three-minute walkthrough rehearsed. Manual action required.
 - [x] Retrieval-only example prepared. Note: remote-work temporary-location question returns retrieved chunks without an answer.
 - [x] Grounded-answer example prepared. Note: same remote-work question generates a grounded answer with source references.

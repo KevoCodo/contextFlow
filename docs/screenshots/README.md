@@ -7,7 +7,7 @@ The README should reference screenshots only after the corresponding image files
 ## Recommended Capture Setup
 
 - Start the app with `docker compose up --build`.
-- Use a clean seeded or manually prepared demo database.
+- Use a clean seeded or manually prepared demo database with `Remote Work Policy` and `Product Support Guide`.
 - Index at least one document before capturing ask and chunk screens.
 - Prefer a desktop viewport around `1440x900`.
 - Capture browser content only, not the full desktop.
@@ -26,7 +26,7 @@ The README should reference screenshots only after the corresponding image files
 
 - Suggested filename: `sources-list.png`
 - Screen state to capture: Sources page with the create form and at least two public-safe sources.
-- Demo data required: seeded or manually created sources.
+- Demo data required: seeded or manually created `Remote Work Policy` and `Product Support Guide` sources.
 - What it proves: manual source grouping and public-safe ingestion boundary.
 - Recommended caption: Source management screen for grouping documents before retrieval.
 
@@ -34,7 +34,7 @@ The README should reference screenshots only after the corresponding image files
 
 - Suggested filename: `source-detail.png`
 - Screen state to capture: source detail with at least one document listed.
-- Demo data required: one source with one or more documents.
+- Demo data required: `Remote Work Policy` or `Product Support Guide` with one or more documents.
 - What it proves: source-to-document relationship and source-filter demo setup.
 - Recommended caption: Source detail showing documents available for filtered retrieval.
 
@@ -42,7 +42,7 @@ The README should reference screenshots only after the corresponding image files
 
 - Suggested filename: `document-detail-chunks.png`
 - Screen state to capture: indexed document detail showing status, chunk count, embedding count, and visible chunks.
-- Demo data required: one indexed document.
+- Demo data required: one indexed document from `Remote Work Policy` or `Product Support Guide`.
 - What it proves: document indexing, deterministic chunking, metadata, and embedding status.
 - Recommended caption: Indexed document showing generated chunks and embedding status.
 
@@ -50,7 +50,7 @@ The README should reference screenshots only after the corresponding image files
 
 - Suggested filename: `ask-controls.png`
 - Screen state to capture: Ask page before running, with a question entered, source filter visible, top-K visible, and mode choices visible.
-- Demo data required: at least one source in the dropdown.
+- Demo data required: `Remote Work Policy` and `Product Support Guide` visible in the source dropdown.
 - What it proves: retrieval controls are understandable and demo-ready.
 - Recommended caption: Ask screen controls for source filtering, top-K, and retrieval mode.
 

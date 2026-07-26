@@ -164,7 +164,7 @@ Set this in `apps/api/.env` before startup:
 SEED_DEMO_DATA=true
 ```
 
-The seed creates public-safe demo sources and draft documents. You still need to index the seeded documents before retrieval can return embedded chunks.
+The seed creates public-safe `Remote Work Policy` and `Product Support Guide` sources with draft documents. You still need to index the seeded documents before retrieval can return embedded chunks.
 
 ### Shutdown
 

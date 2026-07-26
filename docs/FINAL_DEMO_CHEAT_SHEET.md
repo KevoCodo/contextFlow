@@ -23,6 +23,11 @@ RAG lets an AI system retrieve relevant source material before generating an ans
 
 ## Three Demo Questions
 
+Use these public-safe sources:
+
+- `Remote Work Policy`
+- `Product Support Guide`
+
 - Answerable question: `What should employees confirm before working from a temporary location?`
 - Source-filter question: `What details should support collect for a bug report?`
 - Unsupported question: `What is the company holiday schedule?`
