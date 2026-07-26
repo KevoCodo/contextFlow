@@ -237,6 +237,7 @@ RAG can improve grounding by giving a model relevant context, but retrieval can 
 - [Lab Guide](docs/LAB_GUIDE.md)
 - [Troubleshooting Guide](docs/TROUBLESHOOTING_GUIDE.md)
 - [Interview Demo Guide](docs/INTERVIEW_DEMO_GUIDE.md)
+- [Final Demo Cheat Sheet](docs/FINAL_DEMO_CHEAT_SHEET.md)
 - [Screenshot Preparation](docs/screenshots/README.md)
 - [Launch Checklist](docs/LAUNCH_CHECKLIST.md)
 
