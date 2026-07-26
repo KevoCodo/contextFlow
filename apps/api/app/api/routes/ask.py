@@ -24,7 +24,10 @@ def ask(payload: AskRequest, db: Session = Depends(get_db)):
         )
         answer = None
         if not payload.retrieval_only:
-            answer = AnswerService(model=settings.CHAT_MODEL).generate_answer(payload.question, matches)
+            if matches:
+                answer = AnswerService(model=settings.CHAT_MODEL).generate_answer(payload.question, matches)
+            else:
+                answer = "Insufficient information in the knowledge base.\n\nSources: none"
 
         match_payload: list[dict] = [
             {
