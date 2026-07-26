@@ -1,3 +1,5 @@
+from typing import Literal
+
 from pydantic import Field
 
 from app.schemas.common import APIModel
@@ -14,6 +16,8 @@ class AskRequest(APIModel):
 class AskResponse(APIModel):
     question: str
     answer: str | None
+    answer_status: Literal["retrieval_only", "supported", "insufficient_context"] | None = None
+    answer_sources: list[int]
     source_id: int | None = None
     top_k: int
     retrieval_only: bool
