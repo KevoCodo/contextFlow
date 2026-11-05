@@ -55,8 +55,30 @@
 - Persist retrieval settings on ask sessions for walkthrough/debug visibility
 - Display source, document, chunk index, and similarity score in retrieved chunk cards
 
-## Future phases (explicitly out of MVP)
-- File upload support (PDF, DOCX, etc.)
+## Phase 9: Retrieval evaluation and explainability
+- Status: next
+- Add a small public-safe evaluation dataset with expected source/chunk matches
+- Add repeatable retrieval checks for top-K behavior, source filtering, and insufficient-context cases
+- Show why a result was retrieved using existing similarity scores and chunk metadata
+- Add a lightweight evaluation summary that separates retrieval quality from answer generation
+- Document how to troubleshoot weak retrieval without treating similarity scores as correctness percentages
+- Keep the phase focused on inspectability and teaching value rather than production-grade model evaluation
+
+## Phase 10: File ingestion
+- Status: planned
+- Add controlled PDF and DOCX upload support
+- Extract text into the existing document/chunk pipeline
+- Preserve source attribution and document metadata
+- Keep OCR and image ingestion out of scope initially
+
+## Phase 11: Provider flexibility
+- Status: planned
+- Add an embedding-provider abstraction beyond the current OpenAI implementation
+- Add a generation-provider abstraction while preserving the same grounded-answer contract
+- Document tradeoffs between hosted and local/open-source models
+
+## Later phases
 - Website crawling support
 - WordPress integration
-- Local embeddings or open-source model support
+- Authentication and multi-user capabilities only if the project scope changes
+- Production security hardening only if ContextFlow moves beyond portfolio/teaching use

@@ -1,0 +1,37 @@
+[
+  {
+    "case_id": "remote-work-eligibility",
+    "question": "How many days per week can an eligible employee work remotely?",
+    "expected_source_title": "Remote Work Policy",
+    "expected_document_title": "Remote work eligibility",
+    "source_filter_title": null
+  },
+  {
+    "case_id": "remote-work-equipment",
+    "question": "What equipment does the company provide for remote work?",
+    "expected_source_title": "Remote Work Policy",
+    "expected_document_title": "Equipment policy",
+    "source_filter_title": "Remote Work Policy"
+  },
+  {
+    "case_id": "support-bug-intake",
+    "question": "What information should support collect when someone reports a bug?",
+    "expected_source_title": "Product Support Guide",
+    "expected_document_title": "Bug report intake",
+    "source_filter_title": null
+  },
+  {
+    "case_id": "support-escalation",
+    "question": "When should an urgent production issue be escalated to engineering?",
+    "expected_source_title": "Product Support Guide",
+    "expected_document_title": "Support escalation",
+    "source_filter_title": "Product Support Guide"
+  },
+  {
+    "case_id": "release-notes",
+    "question": "What should customer-facing release notes include?",
+    "expected_source_title": "Product Support Guide",
+    "expected_document_title": "Release note guidance",
+    "source_filter_title": null
+  }
+]
